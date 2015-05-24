@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Site</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+    <style>
+        body { padding-top:50px; }
+        input {
+            margin: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Arduino Mega + node + expressjs</h1>
+            <h2>Convertidor binario</h2>
+            <br><br>
+             <button id="conect" class="btn btn-primary">Conectar</button>
+             <br><br>
+
+             <label>Ingresa un numero en decimal: </label><input type="text" id="num_decimal">
+             <button id="convert" class="btn btn-success">Convertir</button>
+        </div>
+    </div>
+</body>
+    <script>
+        $( document ).ready(function (){
+            $('#conect').click(function (){
+                $.ajax({
+                    url: "http://localhost:8080/conect",
+                //
+                }).done(function(response) {
+                    alert(response);
+                });
+            });
+            $('#convert').click(function (){
+                var num = $('#num_decimal').val();
+                $.ajax({
+                    url: 'http://localhost:8080/convert/'+num,
+
+                }).done(function (response){
+                    alert(response);
+                });
+            });
+            /*
+            $('#on').click(function (){
+                $.ajax({
+                    url: "http://localhost:8080/on",
+                //
+                }).done(function(response) {
+                    console.log(response);
+                });
+            });
+            $('#off').click(function (){
+                $.ajax({
+                    url: "http://localhost:8080/off",
+                //
+                }).done(function(response) {
+                    console.log(response);
+                });
+            });
+            $('#pulse').click(function (){
+                $.ajax({
+                    url: "http://localhost:8080/pulse",
+                //
+                }).done(function(response) {
+                    console.log(response);
+                });
+            });*/
+
+        });
+
+    </script>
+</html>
